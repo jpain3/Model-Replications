@@ -1,0 +1,287 @@
+{UTF-8}
+"Average Capability Lifetime (τ L)"=A FUNCTION OF("Average Capability Lifetime (τ L)"\
+		) ~~|
+"Average Capability Lifetime (τ L)"=
+	~	Week
+	~		|
+
+"Minimum Organizational Capacity (C min)"=
+	0.1
+	~	Dmnl
+	~		|
+
+"Normal Fraction of Relief Effort Impacting Capacity (Nf CE)"=A FUNCTION OF("Normal Fraction of Relief Effort Impacting Capacity (Nf CE)"\
+		) ~~|
+"Normal Fraction of Relief Effort Impacting Capacity (Nf CE)"=
+	~	Dmnl
+	~		|
+
+"Normal Productivity (NPdy)"=
+	2
+	~	people/manhour
+	~		|
+
+"Time to Change Allocation (τ E)"=A FUNCTION OF("Time to Change Allocation (τ E)") ~~|
+"Time to Change Allocation (τ E)"=
+	~	Week
+	~		|
+
+"People Receiving Relief (P)"=
+	"Effort Allocated to Relief (E r)"*"Productivity of Relief Effort (Pdy)"
+	~	people/Week
+	~		|
+
+α=A FUNCTION OF(α) ~~|
+α=
+	~	Dmnl
+	~		|
+
+"Time to Invest in Capacity (τ C)"=A FUNCTION OF("Time to Invest in Capacity (τ C)"\
+		) ~~|
+"Time to Invest in Capacity (τ C)"=
+	~	Week
+	~		|
+
+"Capability Erosion (C E)"=
+	"Organizational Capacity (C)"/"Average Capability Lifetime (τ L)"
+	~	Dmnl/Week
+	~		|
+
+"Change in Effort Allocation (CE r)"=
+	("Indicated Effort Allocation to Relief (IE r)"-"Effort Allocated to Relief (E r)")/\
+		"Time to Change Allocation (τ E)"
+	~	manhours/Week/Week
+	~		|
+
+"Effectof Stress (S E)"=
+	1-α*("Gap in Relief Effort (GE)"/"Total Effort (ET)")
+	~	Dmnl
+	~		|
+
+"Effort Allocated to Capacity Improvement (E I)"=
+	"Total Effort (ET)"-"Effort Allocated to Relief (E r)"
+	~	manhours/Week
+	~		|
+
+"Effort Allocated to Relief (E r)"= INTEG (
+	"Change in Effort Allocation (CE r)",
+		500)
+	~	manhours/Week
+	~		|
+
+"Fraction of Relief Effort Impacting Capacity (f CE)"=
+	"Normal Fraction of Relief Effort Impacting Capacity (Nf CE)"*"Effectof Stress (S E)"
+	~	Dmnl
+	~		|
+
+"Gap in People Receiving Relief (GP)"=
+	"People Requiring Relief (P*)"-"People Receiving Relief (P)"
+	~	people/Week
+	~		|
+
+"Gap in Relief Effort (GE)"=
+	"Gap in People Receiving Relief (GP)"/"Productivity of Relief Effort (Pdy)"
+	~	manhours/Week
+	~		|
+
+"Indicated Capacity (C*)"=
+	"Reference Effort to Improvement (RE I)"/"Total Effort (ET)"
+	~	Dmnl
+	~		|
+
+"Indicated Capacity (IC)"=
+	max("Minimum Organizational Capacity (C min)",min(1,"Organizational Capacity (C)"*("Effort Allocated to Capacity Improvement (E I)"\
+		+"Relief Effort Impacting Capacity (E C)")/"Reference Effort to Improvement (RE I)"\
+		))
+	~	Dmnl
+	~		|
+
+"Indicated Effort Allocation to Relief (IE r)"=
+	max("Minimum Effort Allocated to Relief (E Rmin)",min("Total Effort (ET)",("Effort Allocated to Relief (E r)"\
+		+"Gap in Relief Effort (GE)")))
+	~	manhours/Week
+	~		|
+
+"Investment in Capability (C I)"=
+	("Indicated Capacity (IC)"-"Organizational Capacity (C)")/"Time to Invest in Capacity (τ C)"
+	~	Dmnl/Week
+	~		|
+
+"Minimum Effort Allocated to Relief (E Rmin)"=A FUNCTION OF("Minimum Effort Allocated to Relief (E Rmin)"\
+		) ~~|
+"Minimum Effort Allocated to Relief (E Rmin)"=
+	~	manhours/Week
+	~		|
+
+"Organizational Capacity (C)"= INTEG (
+	"Investment in Capability (C I)"-"Capability Erosion (C E)",
+		0.5)
+	~	Dmnl
+	~		|
+
+"People Requiring Relief (P*)"=
+	1000
+	~	people/Week
+	~		|
+
+"Productivity of Relief Effort (Pdy)"=
+	"Normal Productivity (NPdy)"*("Organizational Capacity (C)"/"Indicated Capacity (C*)"\
+		)^2
+	~	people/manhour
+	~		|
+
+"Reference Effort to Improvement (RE I)"=A FUNCTION OF("Reference Effort to Improvement (RE I)"\
+		) ~~|
+"Reference Effort to Improvement (RE I)"=
+	~	manhours/Week
+	~		|
+
+"Relief Effort Impacting Capacity (E C)"=
+	"Effort Allocated to Relief (E r)"*"Fraction of Relief Effort Impacting Capacity (f CE)"
+	~	manhours/Week
+	~		|
+
+"Total Effort (ET)"=
+	1000
+	~	manhours/Week
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Week
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Week
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Week [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.125
+	~	Week [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Arial|12||0-0-0|0-0-0|0-0-0|-1--1--1|-1--1--1|96,96,70,0
+10,1,"Organizational Capacity (C)",1132,148,54,27,3,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,2,"Indicated Capacity (C*)",1175,384,50,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,3,"Reference Effort to Improvement (RE I)",980,437,72,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,4,"Total Effort (ET)",1088,541,57,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,5,3,2,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1063,394)|
+1,6,4,2,1,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(1103,465)|
+10,7,"Productivity of Relief Effort (Pdy)",1335,309,65,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,8,"Normal Productivity (NPdy)",1598,295,70,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,9,1,7,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(1245,189)|
+1,10,2,7,1,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(1252,333)|
+1,11,8,7,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1503,315)|
+12,12,48,1347,149,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,13,15,12,4,0,0,22,0,0,0,-1--1--1,,1|(1302,149)|
+1,14,15,1,100,0,0,22,0,0,0,-1--1--1,,1|(1220,149)|
+11,15,48,1261,149,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,16,"Capability Erosion (C E)",1261,175,50,18,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,17,48,854,155,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,18,20,1,4,0,0,22,0,0,0,-1--1--1,,1|(1027,155)|
+1,19,20,17,100,0,0,22,0,0,0,-1--1--1,,1|(914,155)|
+11,20,48,971,155,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,21,"Investment in Capability (C I)",971,181,55,18,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,22,"Average Capability Lifetime (τ L)",1389,78,70,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,23,22,15,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(1309,96)|
+1,24,1,15,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1150,96)|
+10,25,"Time to Invest in Capacity (τ C)",780,70,59,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,26,25,20,1,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(862,101)|
+1,27,1,20,1,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(1076,100)|
+10,28,"Indicated Capacity (IC)",886,322,48,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,29,28,21,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(888,273)|
+10,30,"Gap in People Receiving Relief (GP)",1423,646,60,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,31,"People Requiring Relief (P*)",1452,559,64,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,32,"People Receiving Relief (P)",1560,734,65,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,33,32,30,1,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(1477,690)|
+1,34,31,30,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(1439,608)|
+10,35,"Gap in Relief Effort (GE)",1312,542,48,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,36,30,35,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(1350,600)|
+1,37,7,35,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(1347,410)|
+10,38,"Effort Allocated to Relief (E r)",996,820,60,26,3,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,39,"Indicated Effort Allocation to Relief (IE r)",1164,708,68,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,40,4,39,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(1104,607)|
+1,41,35,39,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(1276,598)|
+1,42,38,39,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(1063,735)|
+10,43,"Minimum Effort Allocated to Relief (E Rmin)",1361,739,78,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,44,43,39,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1223,733)|
+12,45,48,1296,821,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,46,48,38,4,0,0,22,0,0,0,-1--1--1,,1|(1112,821)|
+1,47,48,45,68,0,0,22,2,0,0,-1--1--1,|12||0-0-0,1|(1233,821)|
+11,48,48,1175,821,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,49,"Change in Effort Allocation (CE r)",1175,847,67,18,40,131,0,0,-1,0,0,0,0,0,0,0,0,0
+1,50,38,49,1,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(1068,873)|
+10,51,"Time to Change Allocation (τ E)",1239,915,59,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,52,51,49,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(1182,878)|
+1,53,39,48,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(1186,773)|
+10,54,"Effort Allocated to Capacity Improvement (E I)",818,613,82,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,55,4,54,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(970,535)|
+1,56,38,54,1,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(926,770)|
+10,57,"Relief Effort Impacting Capacity (E C)",649,618,70,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,58,"Fraction of Relief Effort Impacting Capacity (f CE)",561,431,84,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,59,58,57,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(579,525)|
+1,60,38,57,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(891,835)|
+10,61,"Normal Fraction of Relief Effort Impacting Capacity (Nf CE)",381,294,92,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,62,"Effectof Stress (S E)",583,303,54,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,63,α,406,170,7,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,64,"Gap in Relief Effort (GE)",538,152,53,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128,0,0,0,0,0,0
+1,65,64,62,1,0,0,0,0,128,0,-1--1--1,,1|(563,249)|
+1,66,63,62,1,0,0,0,0,128,0,-1--1--1,,1|(463,219)|
+1,67,62,58,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(573,339)|
+1,68,61,58,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(409,381)|
+10,69,"Total Effort (ET)",647,116,45,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128,0,0,0,0,0,0
+1,70,69,62,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(657,188)|
+10,71,"Minimum Organizational Capacity (C min)",803,236,62,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,72,71,28,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(826,267)|
+1,73,1,28,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(1081,232)|
+1,74,54,28,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(819,482)|
+1,75,57,28,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(697,457)|
+1,76,3,28,1,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(911,389)|
+1,77,7,32,1,0,43,0,2,192,0,-1--1--1,|0||-1--1--1,1|(1552,540)|
+1,78,38,32,1,0,43,0,2,192,0,-1--1--1,|0||-1--1--1,1|(1242,981)|
+///---\\\
+:L<%^E!@
+9:Current
+22:manhour,manhours
+15:0,0,0,0,0,0
+19:70,0
+27:0,
+34:0,
+5:"Indicated Effort Allocation to Relief (IE r)"
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:3
+41:0
+42:1
+72:0
+73:0
+76:0
+77:0
+78:0
+79:0
+80:0
+81:0
+24:0
+25:0
+26:0
+75:
+43:
